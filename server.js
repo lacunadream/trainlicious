@@ -5,8 +5,8 @@ var fs = require('fs');
 
 var Simplify = require("simplify-commerce"),
     client = Simplify.getClient({
-        publicKey: 'sbpb_MTM5MWUwMTMtMjFkMS00YjZiLTllYjYtMDI0YjcwMjc0NmMy',
-        privateKey: 'crgfE1mTT+U34AaulTck0yucpsn1y21WeNJbn30QkU95YFFQL0ODSXAOkNtXTToq'
+        publicKey: 'YOUR_PUBLIC_KEY',
+        privateKey: 'YOUR_PRIVATE_KEY'
     });
  
  var app = express()
@@ -50,12 +50,55 @@ app.post('/api', function(req, res) {
 });
 })
 
+// app.post('/api/createAuth', function (req, res) {
+// client.authorization.create({
+//     amount : "2500",
+//     description : "test authorization",
+//     card : {
+//        expMonth : "11",
+//        expYear : "19",
+//        cvc : "123",
+//        number : "5555555555554444"
+//     },
+//     reference : "asd",
+//     currency : "USD"
+// }, function(errData, data){
+ 
+//     if(errData){
+//         console.error("Error Message: " + errData.data.error.message);
+//         // handle the error
+//         return;
+//     }
+ 
+//     res.json(data)
+// });
+// })
+
+
+client.payment.create({
+    replayId : "A-77633219",
+    amount : "2500",
+    description : "shipment of two eggs in a glass bottle",
+    authorization : "p65RyGaj",
+    reference : "BCK2THEST",
+    currency : "USD"
+}, function(errData, data){
+ 
+    if(errData){
+        console.error("Error Message: " + errData.data.error.message);
+        // handle the error
+        return;
+    }
+ 
+    console.log("Payment Status: " + data.paymentStatus);
+});
+
 //Sample data to be used
     // card : {
     //    expMonth : "11",
     //    expYear : "19",
     //    cvc : "123",
-    //    number : "5555555555554444"
+    //    number : "555 555 555 555 4444"
     // },
     // currency : "USD"
 
