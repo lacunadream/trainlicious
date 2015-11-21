@@ -22,7 +22,7 @@ pg.connect(conString, function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-  client.query('SELECT * FROM weather', function(err, result) {
+  client.query('SELECT $1::int AS number', ['1'], function(err, result) {
     //call `done()` to release the client back to the pool
     done();
 
@@ -47,13 +47,17 @@ app.get('/', function(req, res) {
     var dest = req.query.dest;
     var dept = req.query.dept;
     var time = req.query.time;
+    var dest1 = req.body.dest;
+    var dept1 = req.body.dept;
+    var time1 = req.body.time;
 
     var result = Math.random() * 10
 
-    var x = {"Crowd Score":result, 
+    var x = {"CrowdScore":result, 
     	"Departure":dept, 
     	"Destination":dest, 
-    	"Time":time};
+    	"Time":time
+    };
     console.log(x);
     res.json(x);
  })
