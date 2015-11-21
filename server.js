@@ -15,6 +15,18 @@ app.get('/', function(req, res) {
     res.json({ message: 'eff off' });   
 });
 
+ app.get('/api/query', function (req, res) {
+    var dest = req.query.dest;
+    var dept = req.query.dept;
+    var time = req.query.time;
+
+    var result = Math.random() * time
+
+    var x = {"Crowd Score":result, "Departure":dept, "Destination":dest}
+    console.log(x)
+    res.json(x)
+ })
+
 
 
 
