@@ -5,8 +5,8 @@ var fs = require('fs');
 
 var Simplify = require("simplify-commerce"),
     client = Simplify.getClient({
-        publicKey: 'YOUR_PUBLIC_KEY',
-        privateKey: 'YOUR_PRIVATE_KEY'
+-        publicKey: 'sbpb_MTM5MWUwMTMtMjFkMS00YjZiLTllYjYtMDI0YjcwMjc0NmMy',        +        publicKey: 'YOUR_PUBLIC_KEY',
+-        privateKey: 'crgfE1mTT+U34AaulTck0yucpsn1y21WeNJbn30QkU95YFFQL0ODSXAOkNtXTToq'
     });
  
  var app = express()
@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
     res.json({ message: 'eff off' });   
 });
 
-app.post('/api', function(req, res) {
+app.post('/api/create', function(req, res) {
     var amount = req.body.amount
     var desc = req.body.desc
     var expM = req.body.expM
