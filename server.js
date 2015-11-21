@@ -20,11 +20,14 @@ app.get('/', function(req, res) {
     var dept = req.query.dept;
     var time = req.query.time;
 
-    var result = Math.random() * time
+    var result = Math.random() * 10
 
-    var x = {"Crowd Score":result, "Departure":dept, "Destination":dest}
-    console.log(x)
-    res.json(x)
+    var x = {"Crowd Score":result, 
+    	"Departure":dept, 
+    	"Destination":dest, 
+    	"Time":time};
+    console.log(x);
+    res.json(x);
  })
 
 
