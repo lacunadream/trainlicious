@@ -13,28 +13,26 @@ app.set('port', process.env.PORT || 3000);
 
 // Postgre
 
-var conString = "postgres://oxbqavxj:dx6CgdjYT_IVp2YvxXzLJM_uX7yMOY9x@horton.elephantsql.com:5432/oxbqavxj";
+var conString = "postgres://postgres:qwertyui@localhost:5432/postgres";
 
 //this initializes a connection pool
 //it will keep idle connections open for a (configurable) 30 seconds
 //and set a limit of 20 (also configurable)
-pg.connect(conString, function(err, client, done) {
-  if(err) {
-    return console.error('error fetching client from pool', err);
-  }
-  client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-    //call `done()` to release the client back to the pool
-    done();
+// pg.connect(conString, function(err, client, done) {
+//   if(err) {
+//     return console.error('error fetching client from pool', err);
+//   }
+//   client.query('SELECT * FROM weather', function(err, result) {
+//     //call `done()` to release the client back to the pool
+//     done();
 
-    if(err) {
-      return console.error('error running query', err);
-    }
-    console.log(result.rows[0].number);
-    //output: 1
-  });
-});
-
-
+//     if(err) {
+//       return console.error('error running query', err);
+//     }
+//     console.log(result.rows);
+//     //output: 1
+//   });
+// });
 
 
 
@@ -43,24 +41,43 @@ app.get('/', function(req, res) {
     res.json({ message: 'eff off' });   
 });
 
- app.get('/api/query', function (req, res) {
+app.get('/api/query', function (req, res) {
     var dest = req.query.dest;
     var dept = req.query.dept;
     var time = req.query.time;
-    var dest1 = req.body.dest;
-    var dept1 = req.body.dept;
-    var time1 = req.body.time;
 
     var result = Math.random() * 10
 
-    var x = {"CrowdScore":result, 
-    	"Departure":dept, 
-    	"Destination":dest, 
-    	"Time":time
-    };
-    console.log(x);
-    res.json(x);
- })
+    pg.connect(conString, function(err, client, done) {
+		if(err) {
+	    	return console.error('error fetching client from pool', err);
+	 	}
+		client.query('SELECT COUNT(*) FROM weather', function(err, result){
+		  	if (err) {
+		  		return console.log('count1 ' + err);
+		  	}
+		  	console.log(result.rows[0].count)
+		  	var tableRow = result.rows[0].count - 1
+		  	console.log('asd ' + tableRow)
+		  	client.query('SELECT * FROM weather', function(err, result2) {
+		    done();
+
+		    if(err) {
+		      return console.error('error running query', err);
+		    }
+		    var lol = result2.rows[tableRow].temp_lo
+		    console.log('RAWR ' + lol)
+		        var x = {"CrowdScore":lol, 
+		    	"Departure":dept, 
+		    	"Destination":dest, 
+		    	"Time":time
+		    };
+		    console.log(x);
+		    res.json(x);
+		  });
+		  })
+	});
+})
 
 
 
