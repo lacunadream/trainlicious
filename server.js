@@ -85,7 +85,7 @@ app.get('/api/query', function (req, res) {
 		    }
 		    var lol = result2.rows[tableRow].value
 		    console.log('RAWR ' + lol)
-		        var x = {"CrowdScore":lol, 
+		        var x = {"Crowd Score":lol, 
 		    	"Departure":dept, 
 		    	"Destination":dest, 
 		    	"Time":time
