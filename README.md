@@ -1,5 +1,9 @@
-## simplify-api-wrapper
+## Trainlicious
 
-Lightweight Node.js REST service that allows you to make API calls to simplify's api service. 
+### Background
+One of the problems that many train operators have been facing is the lack of real-time passenger volume data. Taking into consideration infrastructure and cost constraints, we decided to build a solution that leveraged upon CCTV image feeds to calculate in real-time the level of crowdedness in carriages.
 
-Threw this few lines of code together becaquse when we working on a react-native application recently, it was not the most straightforward thing to integrate with simplify's android sdk. 
+This repo contains the backend - reads from a postgresql database and exposes a REST API. 
+
+### Issues
+1. Every API call results in a database connection + call. I am not sure if the the connection needs to be recreated on every API call. Is there a way to keep the connection alive/pool properly? 
