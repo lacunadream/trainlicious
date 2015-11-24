@@ -7,3 +7,6 @@ This repo contains the backend - reads from a postgresql database and exposes a 
 
 ### Issues
 1. Every API call results in a database connection + call. I am not sure if the the connection needs to be recreated on every API call. Is there a way to keep the connection alive/pool properly? 
+
+### Footnote
+Trainlicious emerged as the champion of HackTrain 2.0
