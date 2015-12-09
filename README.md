@@ -10,3 +10,4 @@ This repo contains the backend - reads from a postgresql database and exposes a 
 
 ### Footnote
 Trainlicious emerged as the champion of HackTrain 2.0
+Also came in second in the post-hackathon pitching round for £25k worth of funding and a place on the HackTrain Accelerator program
