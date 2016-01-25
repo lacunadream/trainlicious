@@ -1,3 +1,7 @@
+# Symlink problems with opencv
+import sys
+sys.path.append('/usr/local/lib/python2.7/site-packages')
+
 import cv2
 # import psycopg2
 # import os
@@ -14,10 +18,10 @@ import cv2
 # cur.execute("CREATE TABLE webcam (id serial PRIMARY KEY, index integer, value float);")
 
 
-face_casc_path = '/data/haarcascades/haarcascade_frontalface_default.xml'
+face_casc_path = 'data/haarcascade_frontalface_default.xml'
 # profile_casc_path = '/Users/Martin/opencv-2.4.11/data/haarcascades/haarcascade_profile.xml'
 # full_casc_path = '/Users/Martin/opencv-2.4.11/data/haarcascades/haarcascade_fullbody.xml'
-upper_casc_path = '/data/haarcascades/haarcascade_upperbody.xml'
+upper_casc_path = 'data/haarcascade_upperbody.xml'
 # lower_casc_path = '/Users/Martin/opencv-2.4.11/data/haarcascades/haarcascade_lowerbody.xml'
 
 face_casc = cv2.CascadeClassifier(face_casc_path)
